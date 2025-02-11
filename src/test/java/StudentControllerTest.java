@@ -1,3 +1,4 @@
+import com.student.core.College;
 import com.student.core.Student;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,6 +71,17 @@ public class StudentControllerTest {
         httpHeaders.add("accept", "application/json");
         ResponseEntity<String> responseEntity = new RestTemplate().exchange(URL + "/single?id={id}", HttpMethod.GET, new HttpEntity<String>(httpHeaders), String.class, 3);
         System.out.println(responseEntity.getBody());
+    }
+
+    @Test
+    void testAddStudent() {
+        Student student = new Student(0, "Susan", "Doubtfire", "French", 75.00, new College("1", "1", "1", "1"));
+
+        ResponseEntity<String> responseEntity = new RestTemplate().postForEntity(URL, new HttpEntity<Student>(student, headers), String.class);
+
+        String locationUrl = responseEntity.getHeaders().get("location").get(0);
+
+        ResponseEntity<Student> response = new RestTemplate().getForEntity("http://localhost:8081" + locationUrl, Student.class);
     }
 
 }

@@ -19,6 +19,13 @@ public class Student {
     private String surname;
     private String dept;
     private Double fees;
-    private College college;
+    private College college = new College(null, null, null, null);
 
+    public Student(long id, String firstName, String dept, String surname, Double fees) {
+        this.id = id;
+        this.firstName = firstName;
+        this.dept = dept;
+        this.surname = surname;
+        this.fees = fees;
+    }
 }
