@@ -4,9 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jakarta.inject.Inject;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +23,7 @@ import com.student.service.StudentService;
 public class StudentController {
 	
 	 
-	@Inject
+	@Autowired
 	private StudentService studentService;
  
 	
@@ -44,6 +42,9 @@ public class StudentController {
 		 return studentService.getAllStudents().stream().map(p-> p.getDept()).distinct().collect(Collectors.toList());
 	}
 	
- 
+	@GetMapping(path="/search/department/{department}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Collection<Student> getStudentsByDepartment(@PathVariable ("department") String department) {
+		 return studentService.getStudentsByDepartment(department);
+	}
 	 
 }

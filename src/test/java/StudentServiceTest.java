@@ -1,20 +1,19 @@
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.student.StudentApplication;
+import com.student.core.Student;
+import com.student.service.StudentService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collection;
 
-import javax.inject.Inject;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import com.student.service.StudentService;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import com.student.core.Student;
-
-@SpringBootTest
+@SpringBootTest(classes = StudentApplication.class)
 public class StudentServiceTest {
 	
-	@Inject 
+	@Autowired
 	private StudentService service;
 	
 	@Test
