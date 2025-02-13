@@ -1,7 +1,6 @@
 package com.student.service;
 
 import com.student.core.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 
